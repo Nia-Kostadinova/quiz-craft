@@ -3,6 +3,7 @@ import Button from "../Button/Button";
 import { useContext } from "react";
 import { AppContext } from "../../context/AppContext";
 import { logoutUser } from "../../services/auth.service";
+import './Header.css';
 
 export default function Header () {
     const { user, userData, setAppState } = useContext(AppContext);
@@ -13,10 +14,12 @@ export default function Header () {
     };
 
     return (
-        <header>
-            <NavLink to="/">Home</NavLink>
-            {user && <NavLink to="/tweets">All tweets</NavLink>}
-            {user && <NavLink to="/tweets-create">Create tweet</NavLink>}
+        <header className="header">
+            <div className="navigation">
+                <NavLink to="/">Home</NavLink>
+                {user && <NavLink to="/tweets">All tweets</NavLink>}
+                {user && <NavLink to="/tweets-create">Create tweet</NavLink>}
+            </div>
             { user 
             ? (
                 <>
@@ -24,10 +27,10 @@ export default function Header () {
                     <Button onClick={logout}>LogOut</Button>
                 </>
             )
-            : <>
+            : <div className="login-register">
                 <NavLink to="/login">Login</NavLink>
                 <NavLink to="/register">Register</NavLink>
-            </>}
+            </div>}
         </header>
     )
 }
