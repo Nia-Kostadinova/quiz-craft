@@ -4,9 +4,6 @@ const Footer = () => {
     return (
         <footer className="footer">
             <div className="footer-content">
-                <div className="footer-logo">
-                    <img src="logo.png" alt="Site Logo" />
-                </div>
                 <div className="footer-links">
                     <a href="/about">About</a>
                     <a href="/contact">Contact</a>

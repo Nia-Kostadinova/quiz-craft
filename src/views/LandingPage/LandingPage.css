@@ -1,9 +1,40 @@
 .landing-page {
     font-family: Arial, sans-serif;
     text-align: center;
-    padding: 20px;
-  }
+    width: 100vw;
+    height: 80vh;
+    background-image: url('../../assets/1720px-Sandro_Botticelli_-_La_nascita_di_Venere_-_Google_Art_Project_-_edited.jpg');
+    background-size: cover;
+    background-position-x: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
 
-  .sample-quiz {
+.landing-page-darker {
+    background: rgba(0, 0, 0, 0.2);
+    width: 100%;
+    height: 100%;
+    padding: 0;
+}
+
+.text {
+    padding: 20vh;
+    color: white;
+}
+
+.button {
+    color: black;
+    background-color: white;
+}
+
+.landing-page > * {
+    position: relative;
+    z-index: 2;
+}
+
+.sample-quiz {
     margin: 20px 0;
-  }
+}
