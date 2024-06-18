@@ -9,7 +9,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { AppContext } from './context/AppContext.jsx';
 import Header from './components/Header/Header.jsx';
 import Login from './views/Login.jsx';
-import Register from './views/Register.jsx';
+import Register from './views/Register/Register.jsx';
 import Authenticated from './hoc/Authenticated.jsx';
 import CreateQuiz from './views/CreateQuiz.jsx';
 import NotFound from './views/NotFound.jsx';
