@@ -34,8 +34,8 @@ export default function Login() {
       };
 
   return (
-    <div className="landing-page">
-      <div className='landing-page-darker'>
+    <div className="login">
+      <div className='login-darker'>
         <div className="text">
           <h1>Login</h1>
           <div className="table">

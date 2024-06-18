@@ -1,3 +1,26 @@
+.login {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    width: 100vw;
+    height: 80vh;
+    background-image: url('../../assets/claude_monet-obelisk-art-history.jpg');
+    background-size: cover;
+    background-position-x: center;
+    background-position-y: 60%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+
+.login-darker {
+    background: rgba(0, 0, 0, 0.2);
+    width: 100%;
+    height: 100%;
+    padding: 0;
+}
+
 .text input {
     color: black;
     background-color: white;

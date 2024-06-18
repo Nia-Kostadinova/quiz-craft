@@ -61,8 +61,8 @@ export default function Register() {
   };
 
   return (<div>
-    <div className="landing-page">
-      <div className='landing-page-darker'>
+    <div className="register">
+      <div className='register-darker'>
         <div className="text">
           <h1>Register</h1>
           <div className="table">
