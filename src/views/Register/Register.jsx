@@ -72,7 +72,7 @@ export default function Register() {
               <label htmlFor="email">Email:</label>
               <label htmlFor="password">Password:</label>
             </div>
-            <div className="inputs">
+            <div className="register-inputs">
               <input value={form.firstName} onChange={updateForm('firstName')} type="text" name="username" id="username" /><br/>
               <input value={form.lastName} onChange={updateForm('lastName')} type="text" name="username" id="username" /><br/>
               <input value={form.email} onChange={updateForm('email')} type="text" name="email" id="email" /><br/>

@@ -1,0 +1,17 @@
+.text input {
+    color: black;
+    background-color: white;
+    border: none;
+}
+
+.table {
+    display: flex;
+    justify-content: center;
+}
+
+.labels {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-right: 20px;
+}
