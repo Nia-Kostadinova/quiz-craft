@@ -26,18 +26,20 @@ export const getUserByUsername = async (username) => {
 
 export const createUser = async (
     username,
-    uid,
-    email,
     firstName,
-    lastName
+    lastName,
+    email,
+    phoneNumber,
+    uid,
   ) => {
     try {
       return await set(ref(db, `users/${username}`), {
         username,
-        uid,
-        email,
         firstName,
         lastName,
+        email,
+        phoneNumber,
+        uid,
       });
     } catch (error) {
       console.error("Error creating user: " + error);

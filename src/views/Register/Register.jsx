@@ -115,11 +115,11 @@ export default function Register() {
       const credential = await registerUser(form.email, form.password);
       await createUser(
         form.username,
-        credential.user.uid,
+        form.firstName,
+        form.lastName,
         credential.user.email,
         form.phoneNumber,
-        form.firstName,
-        form.lastName
+        credential.user.uid,
       );
       await updateProfile(auth.currentUser, { displayName: form.username });
       setAppState({ user: credential.user, userData: null });
