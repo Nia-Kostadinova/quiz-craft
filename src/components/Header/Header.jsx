@@ -3,7 +3,7 @@ import Button from "../Button/Button";
 import { useContext } from "react";
 import { AppContext } from "../../context/AppContext";
 import { logoutUser } from "../../services/auth.service";
-import './Header.css';
+import styles from './Header.module.css'
 
 export default function Header () {
     const { user, setAppState } = useContext(AppContext);
@@ -14,19 +14,19 @@ export default function Header () {
     };
 
     return (
-        <header className="header">
-            <div className="navigation">
+        <header className={styles.header}>
+            <div className={styles.navigation}>
                 <NavLink to="/">Home</NavLink>
-                {user && <NavLink to="/tweets">All tweets</NavLink>}
-                {user && <NavLink to="/tweets-create">Create tweet</NavLink>}
+                {user && <NavLink to="/tweets">Browse</NavLink>}
+                {user && <NavLink to="/tweets-create">Create quiz</NavLink>}
             </div>
             { user 
             ? (
                 <>
-                    <Button onClick={logout}>LogOut</Button>
+                    <Button onClick={logout} className={styles.button}>LogOut</Button>
                 </>
             )
-            : <div className="login-register">
+            : <div className={styles.loginRegister}>
                 <NavLink to="/login">Login</NavLink>
                 <NavLink to="/register">Register</NavLink>
             </div>}
