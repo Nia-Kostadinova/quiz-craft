@@ -6,7 +6,7 @@ import { logoutUser } from "../../services/auth.service";
 import './Header.css';
 
 export default function Header () {
-    const { user, userData, setAppState } = useContext(AppContext);
+    const { user, setAppState } = useContext(AppContext);
 
     const logout = async() => {
         await logoutUser();
@@ -23,7 +23,6 @@ export default function Header () {
             { user 
             ? (
                 <>
-                    {`Welcome, ${userData ? userData.handle : 'Loading'}`}
                     <Button onClick={logout}>LogOut</Button>
                 </>
             )

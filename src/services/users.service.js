@@ -15,3 +15,31 @@ export const getUserData = (uid) => {
 
   return get(query(ref(db, 'users'), orderByChild('uid'), equalTo(uid)));
 };
+
+export const getUserByUsername = async (username) => {
+    try {
+      return await get(ref(db, `users/${username}`));
+    } catch (error) {
+      console.error("Error getting user data by username: " + error);
+    }
+  };
+
+export const createUser = async (
+    username,
+    uid,
+    email,
+    firstName,
+    lastName
+  ) => {
+    try {
+      return await set(ref(db, `users/${username}`), {
+        username,
+        uid,
+        email,
+        firstName,
+        lastName,
+      });
+    } catch (error) {
+      console.error("Error creating user: " + error);
+    }
+};

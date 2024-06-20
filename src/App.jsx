@@ -38,17 +38,17 @@ function App() {
 
   return (
     <>
-      <AppContext.Provider value={{...appState, setContext: setAppState}}>
+      <AppContext.Provider value={{...appState, setAppState}}>
         <BrowserRouter>
-          <Header/>
-            <Routes>
-              <Route path="/" element={<LandingPage />}/>
-              <Route path="/login" element={<Login />}/>
-              <Route path="/register" element={<Register />}/>
-              <Route path="/create-quiz" element={<Authenticated><CreateQuiz/></Authenticated>}/>
-              <Route path="*" element={<NotFound />}/>
-            </Routes>
-          <Footer/>
+            <Header/>
+              <Routes>
+                <Route path="/" element={<LandingPage />}/>
+                <Route path="/login" element={<Login />}/>
+                <Route path="/register" element={<Register />}/>
+                <Route path="/create-quiz" element={<Authenticated><CreateQuiz/></Authenticated>}/>
+                <Route path="*" element={<NotFound />}/>
+              </Routes>
+            <Footer/>
         </BrowserRouter>
       </AppContext.Provider>
     </>
