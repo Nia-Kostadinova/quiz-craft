@@ -17,8 +17,8 @@ export default function Header () {
         <header className={styles.header}>
             <div className={styles.navigation}>
                 <NavLink to="/">Home</NavLink>
-                {user && <NavLink to="/tweets">Browse</NavLink>}
-                {user && <NavLink to="/tweets-create">Create quiz</NavLink>}
+                {user && <NavLink to="/quizzes">Browse Quizzes</NavLink>}
+                {user && <NavLink to="/create-quiz">Create quiz</NavLink>}
             </div>
             { user 
             ? (
