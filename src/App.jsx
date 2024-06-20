@@ -20,7 +20,7 @@ function App() {
     user: null,
     userData: null,
   });
-  const [user, loading, error] = useAuthState(auth);
+  const [user] = useAuthState(auth);
   
   if (appState.user !== user) {
     setAppState({ ...appState, user });

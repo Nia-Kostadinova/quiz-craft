@@ -2,7 +2,7 @@
     font-family: Arial, sans-serif;
     text-align: center;
     width: 100vw;
-    height: 80vh;
+    height: 85vh;
     background-image: url('../../assets/2952px-Pieter_Bruegel_the_Elder_-_The_Tower_of_Babel_(Vienna)_-_Google_Art_Project_-_edited.jpg');
     background-size: cover;
     background-position-y: 0%;
@@ -101,4 +101,9 @@ input:-internal-edge-excel-like-autofill-previewed {
 .button:hover {
     background-color: black;
     color: white;
+}
+
+.error {
+    color: white;
+    font-size: 16px;
 }

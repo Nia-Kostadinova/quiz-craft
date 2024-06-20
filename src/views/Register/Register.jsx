@@ -23,6 +23,8 @@ export default function Register() {
     password: "",
     firstName: "",
     lastName: "",
+    username: "",
+    phoneNumber: "",
     role: "student",
     isAdmin: false,
     code: "",
@@ -30,6 +32,7 @@ export default function Register() {
 
   const { user, setAppState } = useContext(AppContext);
   const [selectedRole, setSelectedRole] = useState(roles[1]);
+  const [registerError, setRegisterError] = useState('');
   const navigate = useNavigate();
 
   if (user) {
@@ -52,71 +55,55 @@ export default function Register() {
   }, [selectedRole]);
 
 
-  const register = async() => {
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    if (!form.username) {
+      setRegisterError("Username is required");
+      return;
+    } else if (form.username.length < MIN_USERNAME_LENGTH || form.username.length > MAX_USERNAME_LENGTH) {
+      setRegisterError("Username must be between 3 and 30 characters and contain only letters and numbers!");
+      return;
+    }
+
     if (!form.firstName) {
-      alert("First name is required");
+      setRegisterError("First name is required");
+      return;
+    } else if (!isValidName(form.firstName)) {
+      setRegisterError("First name must be between 1 and 30 characters and contain only letters!");
       return;
     }
 
     if (!form.lastName) {
-      alert("Last name is required");
+      setRegisterError("Last name is required");
       return;
-    }
-
-    if (!form.username) {
-      alert("Username is required");
+    } else if (!isValidName(form.lastName)) {
+      setRegisterError("Last name must be between 1 and 30 characters and contain only letters!");
       return;
     }
 
     if (!form.email) {
-      alert("Email is required");
+      setRegisterError("Email is required");
       return;
-    }
-
-    if (!form.password) {
-      alert("Password is required");
+    } else if (!isValidEmail(form.email)) {
+      setRegisterError("Please enter a valid email address!");
       return;
     }
 
     if (!isValidPhoneNumber(form.phoneNumber)) {
-      alert("Phone number must be valid phone number with 10 digits!");
+      setRegisterError("Phone number must be a valid phone number with 10 digits!");
       return;
     }
 
-    if (!isValidEmail(form.email)) {
-      alert("Please enter a valid email address!");
-    }
-
-    if (
-      form.username.length < MIN_USERNAME_LENGTH ||
-      form.username.length > MAX_USERNAME_LENGTH
-    ) {
-      alert(
-        "Username must be between 3 and 30 characters and contain only letters and numbers!"
-      );
+    if (!form.password) {
+      setRegisterError("Password is required");
+      return;
+    } else if (!isValidPassword(form.password)) {
+      setRegisterError("Password must be between 8 and 30 characters and must include at least one number and one symbol!");
       return;
     }
 
-    if (!isValidPassword(form.password)) {
-      alert(
-        "Password must be between 8 and 30 characters and must include at least one number and one symbol!"
-      );
-      return;
-    }
 
-    if (!isValidName(form.firstName)) {
-      alert(
-        "First name must be between 1 and 30 characters and contain only letters!"
-      );
-      return;
-    }
-
-    if (!isValidName(form.lastName)) {
-      alert(
-        "Last name must be between 1 and 30 characters and contain only letters!"
-      );
-      return;
-    }
     try {
 
       const snapshot = await getUserByUsername(form.username);
@@ -139,28 +126,21 @@ export default function Register() {
       navigate("/");
     } catch (error) {
       if (error.code === "auth/email-already-in-use") {
-        alert("Email has already been used!");
+        setRegisterError("Email has already been used!");
       } else if (error.code === "auth/weak-password") {
-        console.error(
-          "Password must be between 8 and 30 characters and must include at least one number and one symbol!"
-        );
+        setRegisterError("Password must be between 8 and 30 characters and must include at least one number and one symbol!");
       } else if (error.code === "auth/invalid-email") {
-        alert("Please enter a valid email address!");
+        setRegisterError("Please enter a valid email address!");
       } else if (error.code === "auth/invalid-credential") {
-        alert("Please enter valid credentials!");
+        setRegisterError("Please enter valid credentials!");
       } else if (error.code === "auth/too-many-requests") {
-        alert(
-          "You have made too many requests for this account. Please try again later."
-        );
+        setRegisterError("You have made too many requests for this account. Please try again later.");
       } else {
-        console.error(`${error.message}`);
-        alert(
-          `${"Username must be between 3 and 30 characters and contain only letters and numbers!"}`
-        );
+        setRegisterError(error.message);
+      }
       }
     }
 
-  };
 
   return (<div>
     <div className={styles.container}>
@@ -168,6 +148,10 @@ export default function Register() {
         <div className={styles.text}>
           <h1>Register</h1>
           <form className={styles.registerForm}>
+            <div className={styles.formGroup}>
+              <label htmlFor="username">Username:</label>
+              <input value={form.username} onChange={updateForm('username')} type="text" name="username" id="username" />
+            </div>
             <div className={styles.formGroup}>
               <label htmlFor="firstName">First name:</label>
               <input value={form.firstName} onChange={updateForm('firstName')} type="text" name="firstName" id="firstName" />
@@ -181,10 +165,15 @@ export default function Register() {
               <input value={form.email} onChange={updateForm('email')} type="text" name="email" id="email" />
             </div>
             <div className={styles.formGroup}>
+              <label htmlFor="email">Phone number:</label>
+              <input value={form.phoneNumber} onChange={updateForm('phoneNumber')} type="text" name="phoneNumber" id="phoneNumber" />
+            </div>
+            <div className={styles.formGroup}>
               <label htmlFor="password">Password:</label>
               <input value={form.password} onChange={updateForm('password')} type="password" name="password" id="password" />
             </div>
-            <Button className={styles.button} onClick={register}>Register</Button>
+            <Button className={styles.button} type="submit" onClick={handleSubmit}>Register</Button>
+            {registerError && <p className={styles.error}>{registerError}</p>}
           </form>
         </div>
       </div>
